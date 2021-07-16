@@ -13,6 +13,9 @@ inputs:
         required: true
     others:
         required: false
+    failonscore:
+        required: false
+
 runs:
     using: 'docker'
     image: 'docker://owasp/dependency-check-action:latest'
@@ -28,4 +31,6 @@ runs:
         -  '/github/workspace/reports'
         - '--noupdate'
         - '${{ inputs.others }}'
+        - '--failOnCVSS'
+        - '${{ inputs.failonscore }}'
         - '--enableExperimental'
